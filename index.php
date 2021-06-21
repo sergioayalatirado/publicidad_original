@@ -20,7 +20,7 @@
                     <h2 class="display-5 text-center">
                     <img src="https://img.icons8.com/fluent/48/000000/macbook-pictures.png"/><br>
                     Subir publicidad<br>
-                    <a href="publicy_0.php" class="btn btn-primary">Crear nueva publicidad</a>
+                    <a href="cargar_publicidad.php" class="btn btn-primary">Crear nueva publicidad</a>
                     <hr class= "hr-separacion"> <br>
                     </h2>
 

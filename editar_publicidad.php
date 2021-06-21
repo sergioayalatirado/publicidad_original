@@ -137,6 +137,14 @@
                         $tipo_archivo = $row['tipo_archivo'];
                         $extension_archivo = $row['url_archivo'];
                         ?>
+                        <br><br>
+                        <?php 
+                        if(!($tipo_archivo=='imagen' || $tipo_archivo=='audio' || $tipo_archivo=='video')){
+                            echo '<div class="alert alert-warning">Hay texto dentro de este campo</div> ';
+                        }else{
+                            echo "<div class='alert alert-primary'>Hay contenido multimedia como imagen, video o audio</div> ";
+                        }
+                        ?>
                     <input type="file" class="form-control" name="archivo" id="archivo" accept='audio/*,video/*,image/*' value=""><br>
                     </h6>
                
