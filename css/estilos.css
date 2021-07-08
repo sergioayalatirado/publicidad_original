@@ -99,3 +99,9 @@ article h2 {
 		margin-top: 50px;
 	}
 }
+.alertas {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: red;
+  margin-bottom: 15px;
+}

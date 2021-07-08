@@ -79,6 +79,8 @@
                     name="crear">Agregar nuevo dispositivo</button>
             </form>
         </div>
-    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+    <script src="js/registrar_dispositivo.js"></script>
 </body>
 </html>

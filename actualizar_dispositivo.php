@@ -62,7 +62,6 @@
                             <option value="">----Seleccione una sucursal----</option>
                                  <?php
                                 $query = $mysqli -> query("SELECT * FROM sucursal ");
-
                                 while ($valores = mysqli_fetch_array($query)) {
                                     // echo '<option value="'.$valores['id_sucursal'].'" name="fk_sucursal">'.$valores['nombre_sucursal'].'</option>';
                                     if ($valores["id_sucursal"] == $row["fk_sucursal"] ){

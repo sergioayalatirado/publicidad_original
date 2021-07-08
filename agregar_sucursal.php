@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,52 +10,51 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="container">
-            <form action="php/agregar_sucursal.php" 
-            method="post">
+    <div class="container">
+        <form action="php/agregar_sucursal.php" method="POST" id="form-agregarsucursal">
 
-            <h4 class="display-4 text-center">Registrar nueva sucursal</h4><hr><br>
+            <h4 class="display-4 text-center">Registrar nueva sucursal</h4>
+            <hr><br>
 
-            <?php if(isset($_GET['error'])){?>    
+            <?php if (isset($_GET['error'])) { ?>
 
-            <div class="alert alert-danger" role="alert">
-                <?php echo $_GET['error']; ?>
-            </div>
-            <?php } ?> 
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_GET['error']; ?>
+                </div>
+            <?php } ?>
             <!-- //PERMITE SACAR EL ERROR QUE SE ENCUENTRE POR VIDA GET -->
-            
-            <?php if(isset($_GET['success'])){?>    
-            <div class="alert alert-success" role="alert">
-                <?php echo $_GET['success']; ?>
-            </div>
-            <?php } ?> 
 
+            <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_GET['success']; ?>
+                </div>
+            <?php } ?>
             <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" 
-                class="form-control" 
-                id="sucursal" 
-                name="sucursal"
-                value=""
-                placeholder="Ingresa el nombre o identificador de la sucursal">
+                <label for="name">Nombre de la Sucursal</label>
+                <input type="text" class="form-control" id="sucursal" name="sucursal" value="" placeholder="Ingresa el nombre o identificador de la sucursal" onkeypress="return soloLetras(event)" onpaste="return false;">
             </div>
+            <i id="mensaje_sucursal" style="color:red;" class="text-center"></i>
 
             <div class="form-group"><br>
-                <label for="tipo_sucursal" >Tipo de sucursal</label><br>
+                <label for="tipo_sucursal">Tipo de sucursal</label><br>
                 <select name="tipo_sucursal" id="tipo_sucursal" class="form-control">
-                    <option value="matriz">Matriz</option>
-                    <option value="normal">Normal</option>
+                    <option value="">---- Selecciona un tipo de sucursal ----</option>
+                    <option value="Matriz">Matriz</option>
+                    <option value="Normal">Normal</option>
                 </select>
             </div>
-            
+
             <br>
-            <button type="submit" 
-                    class="btn btn-primary"
-                    name="crear">Crear</button>
-                    <a href="lista_sucursales.php"  class=" btn btn-secondary">Mostrar sucursales</a>
-            </form>
-        </div>
-    
+            <button type="submit" class="btn btn-primary" id="btn_esucursal" name='crear'>Crear</button>
+            <a href="lista_sucursales.php" class=" btn btn-secondary">Mostrar sucursales</a>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+    <script src="js/agregar_sucursal.js"></script>
+
 </body>
+
 </html>

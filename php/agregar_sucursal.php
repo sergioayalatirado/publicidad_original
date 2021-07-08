@@ -1,6 +1,7 @@
 <?php
 
-if(isset($_POST['crear'])){
+
+if(isset($_POST)){
     include "../conexion.php";
     function validate($data){ //VALIDA CADA UNA DE LOS VALORES RECIBIDOS POR POST DENTRO DE LA VARIABLE $DATA
     $data = trim($data); //VALIDA Y CORRIGE QUE NO HAYA ESPACIOS EN BLANCO
@@ -9,6 +10,13 @@ if(isset($_POST['crear'])){
     }
     $sucursal = validate($_POST['sucursal']);
     $tipo_suc = validate($_POST['tipo_sucursal']);
+
+    //Sirve para formatear el resultado recibido del POST 
+    echo "hola2";
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
+
 
     $datos_suc = 'sucursal='.$sucursal.'&tipo_sucursal='.$tipo_suc;
 
