@@ -61,17 +61,17 @@ echo "<pre>";
 var_dump($resultado1);
 echo "</pre>";
 
-if($resultado_rows > 0){
-    echo "Se encontraron ".$resultado_rows." registros.";
-    // $consulta1 = mysqli_fetch_assoc($resultado1);
-    while($fila = mysqli_fetch_array($resultado1)){
-    echo "<pre>";
-    var_dump($fila['id_publicidad'], $fila['titulo_publicidad'], $fila['fecha_hora_inicio']);
-    echo "</pre>";
-    }
-}else{
-    echo "No se encuentra ningun registro dentro de la base de datos";
-}
+// if($resultado_rows > 0){
+//     echo "Se encontraron ".$resultado_rows." registros.";
+//     // $consulta1 = mysqli_fetch_assoc($resultado1);
+//     while($fila = mysqli_fetch_array($resultado1)){
+//     echo "<pre>";
+//     var_dump($fila['id_publicidad'], $fila['titulo_publicidad'], $fila['fecha_hora_inicio']);
+//     echo "</pre>";
+//     }
+// }else{
+//     echo "No se encuentra ningun registro dentro de la base de datos";
+// }
 
 // if (empty($titulo)) {
 //     header("Location: ../cargar_publicidad.php?error=Titulo es requerido&$datos_publicidad");
