@@ -98,31 +98,31 @@ document.getElementById('archivo').addEventListener('change', function (event) {
     var splitTArchivo = tipoArchivo.split("/");
 
     //Prueba de validacion de Fecha y Hora
-    console.log(hoy);
-    console.log(tipoArchivo);
-    console.log(tamanoArchivo);
-    console.log(splitTArchivo[0]);
-    console.log(limiteBytesImg);
-    console.log(limiteBytesVid);
-    console.log(limiteBytesAu);
+    // console.log(hoy);
+    // console.log(tipoArchivo);
+    // console.log(tamanoArchivo);
+    // console.log(splitTArchivo[0]);
+    // console.log(limiteBytesImg);
+    // console.log(limiteBytesVid);
+    // console.log(limiteBytesAu);
 
     if (splitTArchivo[0] == "image" || splitTArchivo[0] == "video" || splitTArchivo[0] == "audio") {
-        console.log("El archivo ha sido validado exitosamente, es compatible!");
+        // console.log("El archivo ha sido validado exitosamente, es compatible!");
         if (splitTArchivo[0] == "image" && tamanoArchivo < limiteBytesImg) {
             document.getElementById("aviso_valido").innerHTML = "Esta imagen es valida.";
-            console.log("La imagen es apta para subirse ya que su tamaño es: " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesImg);
+            // console.log("La imagen es apta para subirse ya que su tamaño es: " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesImg);
         } else if (splitTArchivo[0] == "video" && tamanoArchivo < limiteBytesVid) {
             document.getElementById("aviso_valido").innerHTML = "Este video es valido.";
             setTimeout(function () {
                 document.getElementById("aviso_valido").innerHTML = "";
             }, 4000);
-            console.log("El video es apto para subirse ya que su tamaño es:  " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesVid);
+            // console.log("El video es apto para subirse ya que su tamaño es:  " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesVid);
         } else if (splitTArchivo[0] == "audio" && tamanoArchivo < limiteBytesAu) {
             document.getElementById("aviso_valido").innerHTML = "Este audio es valido.";
             setTimeout(function () {
                 document.getElementById("aviso_valido").innerHTML = "";
             }, 4000);
-            console.log("El audio es apto para subirse ya que su tamaño es: " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesAu);
+            // console.log("El audio es apto para subirse ya que su tamaño es: " + tamanoArchivo + " y su limite en Bytes es: " + limiteBytesAu);
         } else {
 
             if (splitTArchivo[0] == "image") {
@@ -144,7 +144,7 @@ document.getElementById('archivo').addEventListener('change', function (event) {
                     document.getElementById("aviso_invalido").innerHTML = "";
                 }, 4000);
             } else {}
-            // console.log("El archivo excede el tamaño en MB (" + tamanoArchivo + ") y por ende no es apto para subirse " + tamanoArchivo);
+            console.log("El archivo excede el tamaño en MB (" + tamanoArchivo + ") y por ende no es apto para subirse " + tamanoArchivo);
             // this.value = '';
             // document.getElementById("aviso_archivo").innerHTML = "El tamaño del Archivo excede al tamaño permitido, elija otro archivo e intente nuevamente.";
             // setTimeout(function () {
@@ -152,12 +152,32 @@ document.getElementById('archivo').addEventListener('change', function (event) {
             // }, 4000);
         }
     } else {
-        console.log("Este no es un archivo valido");
+        // console.log("Este no es un archivo valido");
         document.getElementById("aviso_archivo").innerHTML = "Este no es un archivo valido, por favor elija un archivo valido.";
         setTimeout(function () {
             document.getElementById("aviso_archivo").innerHTML = "";
         }, 4000);
         this.value = '';
+    }
+});
+
+
+var archivo = true;
+
+document.getElementById('botonAccion').addEventListener('click', function (event) {
+    //True = archivo;
+    //False = texto;
+    if (archivo == true) {
+        //El usuario dio click y ingresara texto.
+        //Aqui cambia a true el false
+        console.log(archivo);
+        document.getElementById("texto").value = "";
+      return archivo = false;
+    } else {
+        //El usuario regreso a archivo e ingresara un archivo.
+        //Aqui regresa a true
+        console.log(archivo);
+        return archivo = true;
     }
 });
 
@@ -178,22 +198,26 @@ document.getElementById('btn_validar').addEventListener('click', function (event
     var inputShoraInicio = document.getElementById("hora_inicio").value;
     var inputSfechaFinal = document.getElementById("fecha_final").value;
     var inputShoraFinal = document.getElementById("hora_final").value;
-
+    var div_respuesta = document.getElementById("respuesta");
     var fechaHoy = new Date(Date.now());
-    console.log(fechaHoy);
+    // console.log(fechaHoy);
 
 
     // console.log(valInputArchivo);
-    console.log("Se imprime la fecha parseada");
+    // console.log("Se imprime la fecha parseada");
 
 
-    var fechaHoyP = Date.parse(fechaHoy);
+
     var msj_fhi = document.getElementById("mensaje_fechainicio");
 
+    //Fechas parseadas
+    var fechaHoyP = Date.parse(fechaHoy);
+    var fechaInicioP = Date.parse(inputSfechaInicio);
+    var fechaFinalP = Date.parse(inputShoraFinal);
 
     const lengthTexto = inputTexto.value.length;
     var valueTexto = inputTexto.value;
-    console.log(lengthTexto);
+    // console.log(lengthTexto);
     var cantText = document.getElementById('texto').value.length
     //Evaluar el valor de la sucursal
     const valueSucursal = inputSucursal.value;
@@ -207,22 +231,55 @@ document.getElementById('btn_validar').addEventListener('click', function (event
     //Variables para saber si el formato es valido dentro del input file
     var archivo = document.getElementById('archivo');
 
-    
-   
+
+
     console.log("Formato fecha y hora");
     var fechaHoy = new Date(Date.now());
     var iFechaHInicio = inputSfechaInicio + ' ' + inputShoraInicio;
     var iFechaHFinal = inputSfechaFinal + ' ' + inputShoraFinal;
+
+
+    var fechaHoyF = fechaHoy.getUTCDate();
     var horaActual = fechaHoy.getHours();
     var minutosActual = fechaHoy.getMinutes();
 
     //Añadiendo un cero mientras tiene un digito en su valor
     var minutoActual = ('0' + minutosActual).slice(-2);
-    var horaMin = horaActual + ":" + minutoActual;
-    console.log(horaMin);
-    console.log(fechaHoy);
 
-    
+    var hoy = new Date();
+
+    var ActualMes = hoy.getMonth() + 1;
+    var ActualDia = hoy.getDate();
+    var ActualAnio = hoy.getFullYear();
+    var FechaActualCompleta = ActualAnio + '-' + ActualMes + '-' + ActualDia;
+    console.log(FechaActualCompleta);
+    var nDateH = new Date(FechaActualCompleta);
+
+    var PFechActual = Date.parse(nDateH);
+    var FechaActualSis = PFechActual - 21600000;
+    var PFechaInicio = Date.parse(inputSfechaInicio);
+    var PFechaFinal = Date.parse(inputSfechaFinal);
+
+    console.log(nDateH);
+    console.log("");
+
+    console.log("Parse fecha actual");
+    console.log(FechaActualSis);
+    console.log("Parse fecha inicio input");
+    console.log(PFechaInicio);
+    console.log("Parse fecha final input");
+    console.log(PFechaFinal);
+
+
+    console.log(inputSfechaInicio + ' ' + inputShoraInicio);
+    console.log(inputSfechaFinal + ' ' + inputShoraFinal);
+    // var datePHoy = Date.parse(fechaHoy);
+    // console.log(datePHoy);
+    // var dateFHoy = dateFormat(datePHoy, "yyyy, mm, dd");
+    // var stringFhoy = dateFHoy.toString();
+    // console.log(stringFhoy);
+
+
 
 
     //La condicional compara que si el titulo esta vacio o que tenga menos de 5 caracteres automaticamente marcara que hay algun error y por ende no hara nada.
@@ -232,32 +289,80 @@ document.getElementById('btn_validar').addEventListener('click', function (event
         alert("La cantidad de caracteres en el titulo de publicidad excede los permitidos.");
     } else if (inputSfechaInicio == "" || inputSfechaFinal == "" || inputShoraInicio == "" || inputShoraFinal == "") {
         alert("Favor de llenar las fechas y horas faltantes.");
+    }
+    //Revisar 
+    else if (iFechaHInicio == iFechaHFinal) {
+        alert("Fecha, hora de inicio y Fecha, hora final son iguales.\nVerifica e intentalo nuevamente.");
+    } //Esta linea sirve para validar los formatos de fecha
+    else if (FechaActualSis > PFechaInicio) {
+        alert("Ingresa una fecha inicial posterior a la fecha actual.");
+    } else if (PFechaFinal < FechaActualSis) {
+        alert("La fecha final es menor a la fecha actual.");
+    } else if (PFechaInicio < FechaActualSis && PFechaFinal < FechaActualSis) {
+        alert("La fecha inicial y final son menores a la actual, ingresa una fecha valida.");
     } else if (inputSfechaInicio > inputSfechaFinal) {
         alert("La fecha inicio es mayor a la fecha final.");
     } else if (inputShoraInicio >= inputShoraFinal) {
         alert("La hora final es mayor o igual a la hora inicial.");
     } else if (fechaHoy > inputSfechaFinal) {
         alert("La fecha de hoy es mayor a la final.");
-    } else if (horaMin > inputShoraFinal) {
-        alert("La hora de hoy es mayor a la final.");
+    } else if (iFechaHInicio < fechaHoy) {
+        console.log(iFechaHInicio);
+        console.log(fechaHoy);
+        alert("La fecha de inicio es menor a la de hoy.");
+    } else if (iFechaHInicio > iFechaHFinal) {
+        alert("La fecha de inicio es mayor a la fecha final.");
+    } else if (iFechaHInicio == iFechaHFinal) {
+        alert("La fecha y hora de inicio es igual a la fecha y hora final");
     } else if (valueSucursal == "" || valueSucursal == null) {
         alert("Selecciona una sucursal.");
     } else if (valueDispositivo == "" || valueDispositivo == null) {
         alert("Selecciona un dispositivo.")
     } else if (valueTexto == "" && valInputArchivo.files.length === 0) {
         alert("Por favor adjunta texto o contenido multimedia a tu publicidad.");
-    } else if(cantText < 5){
-        alert("Muy poco texto o descripcion de la publicidad. \nIngresa desde 5 caracteres.")
-    }
+    }   else if (archivo == false || cantText <=4 ) {
+        alert("Muy poco texto o descripcion de la publicidad. \nIngresa desde 5 caracteres.\nIngresaste "+cantText+" Caracteres.");
+    }else if(archivo == true){
+            var i = document.getElementById("texto").value= "";
+            i = this.innerHTML = "";    
+    }   
     else {
-        console.log(valueTitulo);
-        $("#form-subir_publicidad").unbind('submit').submit()
+
+        // $("#form-subir_publicidad").unbind('submit').submit()
+        cargando(1)
+        var formData = new FormData(document.getElementById("form_publicidad"));
+        $.ajax({
+            type: 'POST',
+            url: 'php/verify_horario.php',
+            dataType: "html",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                div_respuesta.innerHTML = data;
+                console.log("Ya obtuve la respuesta");
+                console.log(data);
+                $("#avisoPublicidad").modal({
+                    'show': true
+                });
+            }
+        })
+        cargando(0)
     }
 });
 
 
 
-
+function cargando(cargar) {
+    if (cargar) {
+        $("#btn_validar").attr('disabled',  true)
+        $("#btn_validar").html('Validando')
+    } else {
+        $("#btn_validar").attr('disabled',  false)
+        $("#btn_validar").html('Crear nueva publicidad')
+    }
+}
 
 
 

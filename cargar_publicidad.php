@@ -9,6 +9,9 @@ include "conexion.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir publicidad</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css?x=2">
     <link rel="stylesheet" href="css/estilo-formtxt.css">
@@ -19,11 +22,19 @@ include "conexion.php";
     <link rel="stylesheet" href="bootstrap/js/popper.min.js">
     <link rel="stylesheet" href="bootstrap/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="bootstrap/js/bootstrap.bundle.js"> -->
+
+    <!-- <script type="text/javascript">
+        $(window).on("load",function() {
+            $('#avisoPublicidad').modal('show');
+        });
+    </script> -->
 </head>
 
 <body>
+
+
     <div class="container">
-        <form action="php/cargar_publicidad.php" method="POST" enctype="multipart/form-data" id="form-subir_publicidad">
+        <form action="php/cargar_publicidad.php" method="POST" enctype="multipart/form-data" id="form_publicidad">
 
             <div class="form-group">
                 <a href="index.php">Inicio</a>
@@ -66,8 +77,8 @@ include "conexion.php";
             <label for="" class="text-center display-6">Fecha y hora de vencimiento</label><br><br>
             <input type="date" size="1" class="form-control" name="fecha_final" id="fecha_final"><br>
             <input type="time" size="1" class="form-control" name="hora_final" id="hora_final">
-            
-                <br>
+
+            <br>
             <div class="form-group">
                 <label for="" class="display-6 text-center">Selecciona una sucursal</label>
                 <select name="fk_sucursal" id="fk_sucursal" class="form-control" onpaste="return false;">
@@ -127,13 +138,39 @@ include "conexion.php";
                 <div id="audioPreview"></div>
 
             </div>
-            <button type="submit" class="btn btn-primary" name="btn_validar" id="btn_validar" text-center>Crear nueva publicidad</button>
+            <!-- <button type="submit" class="btn btn-primary" name="btn_validar" id="btn_validar" text-center>Crear nueva publicidad</button> -->
+            <button type="button" class="btn btn-primary my-2 aaaa" id="btn_validar">Crear nueva publicidad</button>
         </form>
     </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="avisoPublicidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="exampleModalLongTitle">AVISO</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center"></div>
+                    <div class="col-md">
+                        <div id="respuesta" class=""></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar aviso</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- No cambiar el orden de los JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
     <script src="js/funciones.js"></script>
+    <!-- <script src="js/verify_horario.js"></script> -->
     <script src="js/insercion_publicidad.js"></script>
 
 </body>
